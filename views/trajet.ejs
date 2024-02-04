@@ -1,0 +1,112 @@
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/public/css/students.css" type="text/css">
+    <title>Document</title>
+</head>
+<style>
+    span{
+        color: black;
+        font-weight: bold;
+    }
+    ul{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        background-color: azure;
+        justify-content: space-between;
+    }
+    li{
+        padding: 5px;
+        margin: 3px;
+    }
+    .span2{
+        background-color: lightgray;
+    }
+
+    div#divcondi {
+        display: flex;
+        align-items: center;
+    }
+
+    div#divcondi>.item {
+        margin: 20px;
+    }
+
+    div#divcondi>button {
+        padding: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .reserver {
+        display: flex;
+        align-items: center;
+    }
+    form.reserver {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    .reserver>p {
+        margin: 15px;
+    }
+    form.reserver>input {
+        width: 80px;
+        margin: 5px;
+    }
+    form.reserver>button {
+        margin: 20px;
+        padding: 5px;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+<body>
+    
+    <h1>Liste des trajets </h1>
+    <% trajets.forEach(function(tra) { %>
+        <ul>
+            
+        </ul>
+        <ul>
+            <div id="divli">
+                <li> <span>trajet id </span>: <span class="span2"><%= tra.id %></span></li>
+                <li> <span>user id</span>  : <span class="span2"><%= tra.user_id%></span></li>
+                <li> <span>départ</span> : <span class="span2"><%= tra.depart %></span></li>
+                <li> <span>destination</span>: <span class="span2"><%= tra.destination %></span></li>
+                <li> <span>date</span> : <span class="span2"><%=  tra.date%></span></li>
+                <li> <span>nombre de place </span>: <span class="span2"><%= tra.place%></span></li>
+                <li> <span>etat </span>: <span class="span2"><%= tra.etat%></span></li>
+            </div>
+            
+            <div id="divcondi">
+                <%if (tra.etat==true) {%> 
+                     <p class="item" style="color : red">trajet expiré</p>  
+                     <form class="reserver" action="/trajet/supprimer/<%= tra.id %>" method="post">
+                        <button class="item" style="background-color : red; color : white;">Supprimer</button>
+                    </form>
+                <%}%>
+                <%if (tra.etat==false) 
+                {%>  
+                    <div class="reserver">
+                        <p class="item" style="color : green">trajet disponible</p>
+                        <form class="reserver" action="/reservation/reservertra/<%= tra.id %>/nbplace/<%= tra.place%>" method="post">
+                            <input type="number" name="nbplace" placeholder="place?">
+                            <button class="item" style="background-color : green; color : white;">Réserver</button>
+                        </form>
+
+                    </div>
+                
+                <%}%>
+                
+            </div>
+            
+        </ul>
+        
+     <% }); %> 
+
+    
+</body>
+</html>

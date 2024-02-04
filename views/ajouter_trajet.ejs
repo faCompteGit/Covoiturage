@@ -1,0 +1,49 @@
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/public/css/students.css" type="text/css">
+    <title>publier un trajet</title>
+</head>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 300px;
+        background-color: lavender;
+        align-items: center;
+        justify-content: center;
+    }
+    input {
+        padding: 10px;
+        width: 60%;
+    }
+    #btn{
+        border: none;
+        background-color: blue;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <h1>Publier un trajet</h1>
+            <form action="/trajet/addtrajets" method="post">
+                <input type="text" id="depart" name="depart" placeholder="depart"  required><br>
+                <input type="text" id="destination" name="destination" placeholder="destination" required><br>
+                <input type="text" id="date" name="date" placeholder="date" required><br>
+                <input type="text" id="place" name="place" placeholder="nombre de place" required><br>
+                <input id="btn" type="submit" value="Publier">
+            </form>
+    
+</body>
+</html>

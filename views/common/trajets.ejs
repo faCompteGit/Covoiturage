@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<style>
+    span{
+        color: black;
+        font-weight: bold;
+    }
+    ul{
+        list-style: none;
+    }
+    li{
+        padding: 5px;
+        margin: 3px;
+    }
+    .span2{
+        background-color: lightgray;
+    }
+</style>
+<body>
+    
+    <h1>Liste des trajet_home </h1>
+    <% trajet_home.forEach(function(tra) { %>
+        <ul>
+            <li> <span>trajet id </span>: <span class="span2"><%= tra.id %></span></li>
+            <li> <span>user id</span>  : <span class="span2"><%= tra.user_id%></span></li>
+            <li> <span>départ</span> : <span class="span2"><%= tra.depart %></span></li>
+            <li> <span>destination</span>: <span class="span2"><%= tra.destination %></span></li>
+            <li> <span>date</span> : <span class="span2"><%=  tra.date%></span></li>
+            <li> <span>nombre de place </span>: <span class="span2"><%= tra.place%></span></li>
+        </ul>
+     <% }); %> 
+
+    
+</body>
+</html>

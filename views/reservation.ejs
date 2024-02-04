@@ -1,0 +1,162 @@
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/public/css/students.css" type="text/css">
+    <title>Reservation</title>
+</head>
+<style>
+    body{
+        background-color: darkslategrey;
+    }
+
+    span{
+        color: black;
+        font-weight: bold;
+    }
+    ul{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        background-color: azure;
+        justify-content: space-between;
+    }
+    li{
+        padding: 5px;
+        margin: 3px;
+    }
+    .span2{
+        background-color: lightgray;
+    }
+
+    div#divcondi {
+        display: flex;
+        align-items: center;
+    }
+
+    div#divcondi>.item {
+        margin: 20px;
+        padding: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .reserver {
+        display: flex;
+        align-items: center;
+    }
+    form.reserver {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    .reserver>p {
+        margin: 15px;
+    }
+    form.reserver>input {
+        width: 80px;
+        margin: 5px;
+    }
+    form.reserver>button {
+        margin: 20px;
+        padding: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .commentaire {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        background-color: lavender;
+    }
+
+    form.commenter {
+        display: flex;
+    }
+    .commentaire>span {
+        margin: 5px;
+        font-style: italic;
+    }
+
+    textarea#commentaire {
+        width: 300px;
+        height: 60px;
+        margin-right: 20px;
+    }
+
+    button#commemter {
+        cursor: pointer;
+    }
+    i {
+        color: cornflowerblue;
+    }
+
+
+    
+</style>
+<body>
+    
+    <h1>Liste des reservations </h1>
+    <% reservations.forEach(function(res) { %>
+        <ul>
+            <div id="divli">
+                <li><span>reservation id</span>  : <span class="span2"><%= res.id %></span> </li>
+                <li><span>trajet id</span>  : <span class="span2"><%= res.trajet_id %></span> </li>
+                <li><span>user id</span>  : <span class="span2"><%= res.user_id%></span> </li>
+                <!-- <li><span>places prisent</span>   : <span class="span2"><%= res.user_id%></span> </li> -->
+                <li><span>date</span>  : <span class="span2"><%= res.date %></span> </li>
+                <li><span>place disponible</span>  : <span class="span2"><%= res.place_max%></span></li>
+
+                <% commentaires.forEach(function(com) { %>
+                    <% users.forEach(function(user) { %>
+                        <%if (com.trajet_id==res.trajet_id && com.user_id==user.id) {%>
+                <div class="commentaire">
+                    <span><i><%= user.username%></i> :<%= com.commentaire%></span>
+                        <%}%>
+                    <%})%>
+                <%})%>
+
+
+                <%if (res.place_max!=0){%>
+                    <form class="commenter" action="/commentaire/commenter/<%= res.trajet_id %>/commentaire" method="post">
+                        <textarea id="commentaire" name="commentaire" required></textarea>
+                        <button id="commemter"> Commenter</button>
+                    </form>
+
+                </div>
+                <%}%>
+                
+            </div>
+            
+            <div id="divcondi">
+                <%if (res.place_max==0) {%>  
+                    <p class="item" style="color : red">trajet plein</p>  
+                    <form class="reserver" action="/reservation/supprimer/<%= res.id %>" method="post">
+                        <button class="item" style="background-color : red; color : white;">Supprimer</button>
+                    </form>
+                <%}%>
+
+                <%if (res.place_max!=0)
+                 {%> 
+                    <div class="reserver">
+                        <p class="item" style="color : green">trajet disponible</p>
+                        <form class="reserver" action="/reservation/reserver/<%= res.trajet_id %>/nbplace" method="post">
+                            <input type="number" name="nbplace" placeholder="place?">
+                            <button class="item" style="background-color : green; color : white;">Réserver</button>
+                        </form>
+
+                    </div>
+                
+                <%}%>
+                
+            </div>
+            
+        </ul>
+        
+        
+     <% }); %> 
+
+    
+</body>
+</html>

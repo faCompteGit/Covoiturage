@@ -1,0 +1,82 @@
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/public/css/students.css" type="text/css">
+    <title>Document</title>
+</head>
+
+<style>
+    .container_subnav {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        margin: 20px;
+    }
+    ul.ul_subnav>li {
+        padding: 15px;
+        margin: 35px;
+        border-radius: 8px;
+    }
+    ul.ul_subnav>li>a {
+        color: white;
+        text-decoration: none;
+        padding: 14px;
+    }
+    #trajets{
+        background-color: #DC143C;
+
+    }
+    #trajets_perso{
+        background-color: #008080;
+
+    }
+    #post_trajets{
+        background-color: #4B0082;
+
+    }
+    #reservations{
+        background-color: #800000;
+
+    }
+    
+    ul.ul_subnav {
+        height: 50px;
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    body{
+        background-color: darkslategrey;
+        
+
+    }
+
+
+</style>
+
+<body>
+    <header>
+        <%- include('../common/header') %>
+    </header>
+    <div class="container_subnav">
+        <ul class="ul_subnav">
+            <li id="trajets"><a href="/trajet/trajets">Voirs tous les trajets</a></li>
+            <li id="trajets_perso"><a href="/trajet/trajetUser">Voirs mes trajets</a></li>
+            <li id="post_trajets"><a href="/pub_trajet">Publier un trajet</a></li>
+            <li id="reservations"><a href="/reservation/reservations">Voirs les reservations</a></li>
+        </ul>
+    </div>
+
+    <h1>Bienvenu Mr <%= user.username %> <%= iduser %></h1>
+    
+    <footer>
+        <%- include('../common/footer') %>
+    </footer>
+
+</body>
+</html>

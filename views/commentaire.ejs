@@ -1,0 +1,39 @@
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/public/css/students.css" type="text/css">
+    <title>Commentaire</title>
+</head>
+<style>
+    span{
+        color: black;
+        font-weight: bold;
+    }
+    ul{
+        list-style: none;
+    }
+    li{
+        padding: 5px;
+        margin: 3px;
+    }
+    .span2{
+        background-color: lightgray;
+    }
+</style>
+<body>
+    
+    <h1>Liste des commentaires </h1>
+    <% commentaires.forEach(function(com) { %>
+        <ul>
+            <li><span>commentaire id</span>  : <span class="span2"><%= com.id %></span></li>
+            <li><span>user id </span> :<span class="span2"><%= com.user_id%></span> </li>
+            <li><span>trajet id</span>  : <span class="span2"><%= com.trajet_id %></span> </li>
+            <li><span>date</span>  : <span class="span2"><%= com.date %></span> </li>
+            <li><span>commentaire</span>  : <span class="span2"><%= com.commentaire%></span></li>
+            
+        </ul>
+     <% }); %> 
+
+    
+</body>
+</html>

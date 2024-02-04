@@ -1,0 +1,61 @@
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/public/css/students.css" type="text/css">
+    <title>username</title>
+</head>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: 200px;
+        background-color: lavender;
+        align-items: center;
+        justify-content: center;
+    }
+    input {
+        padding: 10px;
+        width: 60%;
+    }
+    #btn{
+        border: none;
+        background-color: blue;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <h1>Connexion</h1>
+            <form action="/auth/login/:username/:password" method="post">
+                <input type="text" id="username" name="username" placeholder="username"  required><br>
+                <input type="password" id="password" name="password" placeholder="password" required><br>
+                <input id="btn" type="submit" value="Se connecter">
+            </form>
+
+
+    <script type="text/javascript">        
+        
+        if(user=null) 
+        {  
+          showAlert("user.message");
+        }
+        
+        
+        showAlert = function(err) {
+          alert('user: ' + err);
+        }
+    </script>
+    
+</body>
+</html>
